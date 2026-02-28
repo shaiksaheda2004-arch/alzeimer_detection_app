@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Medical Report</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="report-card">
+
+    <h2>🧾 AI Medical Report</h2>
+
+    <hr>
+
+    <!-- BASIC INFO -->
+    <p><strong>Study Type:</strong> MRI Brain Scan</p>
+    <p><strong>Model Used:</strong> CNN-based Deep Learning Model</p>
+    <p><strong>Input Resolution:</strong> 128 × 128</p>
+
+    <hr>
+
+    <!-- IMAGE PREVIEW -->
+    <h3>🖼 Uploaded Image</h3>
+    <img src="{{ image_path }}" class="preview" alt="Uploaded Scan">
+
+    <hr>
+
+    <!-- DIAGNOSIS -->
+    <h3>🧠 Diagnosis</h3>
+    <p class="diagnosis">
+        {{ report.diagnosis }}
+    </p>
+
+    <!-- CONFIDENCE -->
+    <h3>📊 Confidence Level</h3>
+    <div class="confidence-box">
+        <div class="confidence-label">
+            {{ report.confidence }}%
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" data-confidence="{{ report.confidence }}"></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- CLINICAL NOTE -->
+    <h3>📝 Clinical Interpretation</h3>
+    <p>
+        {{ report.clinical_note }}
+        The uploaded MRI scan has been classified as
+        <strong>{{ report.diagnosis }}</strong>
+        with a confidence score of
+        <strong>{{ report.confidence }}%</strong>.
+    </p>
+
+    <hr>
+
+    <!-- DISCLAIMER -->
+    <p class="disclaimer">
+        ⚠️ <strong>Disclaimer:</strong><br>
+        This AI-generated report is intended for educational and research purposes only.
+        It should not be used as a substitute for professional medical diagnosis.
+    </p>
+
+    <!-- ACTION -->
+    <a href="/upload">
+        <button style="margin-top:15px;">Upload Another Image</button>
+    </a>
+
+</div>
+
+<!-- JS FOR CONFIDENCE BAR -->
+<script>
+    const bar = document.querySelector(".progress-fill");
+    if (bar) {
+        const value = bar.dataset.confidence;
+        bar.style.width = value + "%";
+    }
+</script>
+
+</body>
+</html>

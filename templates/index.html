@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome Back!</h2><body>
+  <div class="page-center">
+    <div class="card">
+      <!-- your existing form / upload / result content here -->
+    </div>
+  </div>
+</body>
+
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+
+    <a href="/dashboard">
+    <button>Login</button>
+</a>
+
+    <p>Don’t have an account? <a href="/signup">Sign Up</a>
+
+{% endblock %}
